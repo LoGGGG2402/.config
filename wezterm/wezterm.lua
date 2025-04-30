@@ -233,25 +233,6 @@ wezterm.on("update-status", function(window, pane)
     { Text = "  " },
   }))
 end)
-
--- Automatically assign SSH connections to a workspace named after the host
-wezterm.on("format-ssh-domain", function(params)
-  -- params contains information like:
-  -- params.remote_address (e.g., "server.example.com" or "192.168.1.100")
-  -- params.username
-
-  -- Create a workspace name based on the remote host address
-  -- Example: If connecting to "server.example.com", workspace will be "ssh:server.example.com"
-  local workspace_name = "ssh:" .. params.remote_address
-
-  -- Return a domain specification. We only need to override the Workspace.
-  -- Wezterm will handle the rest of the SSH connection details.
-  return {
-    Workspace = workspace_name,
-  }
-end)
-
-
 -- ====================================
 -- Return the configuration object
 -- ====================================
