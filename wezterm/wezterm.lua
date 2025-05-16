@@ -22,6 +22,9 @@ config.font = wezterm.font_with_fallback({
   -- Fallback fonts will be used if characters are missing
 })
 
+-- Default window size
+config.initial_rows = 40  -- Example: 40 rows
+config.initial_cols = 150 -- Example: 120 columns
 -- Window background
 config.window_background_image = wezterm.config_dir .. "/bg.jpg" -- Relative path to background image
 config.window_background_opacity = 0.7 -- Background opacity (0.0 transparent, 1.0 opaque)
@@ -100,11 +103,6 @@ config.keys = {
     }
   },
 
-
-  -- Navigation/Editing helpers
-  { key = 'LeftArrow', mods = 'OPT', action = act.SendKey({ key = 'b', mods = 'ALT' }) }, -- Move cursor back one word
-  { key = 'RightArrow', mods = 'OPT', action = act.SendKey({ key = 'f', mods = 'ALT' }) }, -- Move cursor forward one word
-
   -- Tab management
   { -- Rename the current tab via prompt
     key = "r",
@@ -166,70 +164,55 @@ config.tab_bar_at_bottom = true        -- Place tab bar at the bottom
 
 -- Custom status bar update function
 wezterm.on("update-status", function(window, pane)
-  -- Left status: Workspace / Leader / Key Table state
+  -- Workspace name
   local stat = window:active_workspace()
-  local stat_color = "#f7768e" -- Default color for workspace
-
-  -- Use the key table name if active
-  local key_table_name = window:active_key_table()
-  if key_table_name then
-    stat = key_table_name
-    stat_color = "#7dcfff" -- Color for active key table
+  local stat_color = "#f7768e"
+  -- It's a little silly to have workspace name all the time
+  -- Utilize this to display LDR or current key table name
+  if window:active_key_table() then
+    stat = window:active_key_table()
+    stat_color = "#7dcfff"
   end
-  -- Show leader state if active (overrides key table name)
   if window:leader_is_active() then
     stat = "LDR"
-    stat_color = "#bb9af7" -- Color for active leader
+    stat_color = "#bb9af7"
   end
 
-
-  -- Right status: CWD and current command
-  -- Helper function to get the basename from a path
   local basename = function(s)
-     if not s then return "" end
-     -- Normalize separators and get the last component
-     s = s:gsub("\\", "/")
-     local base = s:match("([^/]+)$")
-     return base or s -- Return the original string if it has no slashes
+    -- Nothing a little regex can't fix
+    return string.gsub(s, "(.*[/\\])(.*)", "%2")
   end
 
-  -- Get current working directory
-  local cwd_uri = pane:get_current_working_dir()
-  local cwd = ""
-  -- Check if cwd_uri is not nil and is a table with file_path or a string
-  if cwd_uri then
-      if type(cwd_uri) == "table" and cwd_uri.file_path then
-          cwd = basename(cwd_uri.file_path)
-      elseif type(cwd_uri) == "string" then
-          -- Attempt to handle file URI string
-          local path_str = cwd_uri:gsub("file://", "")
-          -- Decode percent-encoded characters (e.g., %20 for space)
-          path_str = wezterm.url_decode(path_str)
-          cwd = basename(path_str)
-      end
+  -- Current working directory
+  local cwd = pane:get_current_working_dir()
+  if cwd then
+    cwd = basename(cwd.file_path)  --> URL object introduced in 20240127-113634-bbcac864 (type(cwd) == "userdata")
+    -- cwd = basename(cwd) --> 20230712-072601-f4abf8fd or earlier version
+  else
+    cwd = ""
   end
 
+  -- Current command
+  local cmd = pane:get_foreground_process_name()
+  -- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l)
+  cmd = cmd and basename(cmd) or ""
 
-  -- Get foreground process name
-  local cmd_name = pane:get_foreground_process_name()
-  local cmd = ""
-  if cmd_name then
-    cmd = basename(cmd_name)
-  end
-
-  -- Set status bar content
+  -- Left status (left of the tab line)
   window:set_left_status(wezterm.format({
     { Foreground = { Color = stat_color } },
     { Text = "  " },
-    { Text = wezterm.nerdfonts.oct_table .. "  " .. stat }, -- Icon + status text
+    { Text = wezterm.nerdfonts.oct_table .. "  " .. stat },
     { Text = " |" },
   }))
 
+  -- Right status
   window:set_right_status(wezterm.format({
-    { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd }, -- Folder icon + CWD
+    -- Wezterm has a built-in nerd fonts
+    -- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
+    { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
     { Text = " | " },
     { Foreground = { Color = "#e0af68" } },
-    { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd }, -- Code icon + command
+    { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
     { Text = "  " },
   }))
 end)

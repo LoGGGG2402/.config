@@ -1,81 +1,103 @@
-# Dotfiles Configuration
+# 🛠️ Dotfiles Configuration
 
-A collection of my personal configuration files for various tools and applications.
+![Terminal](https://img.shields.io/badge/Terminal-Wezterm-blue)
+![Shell](https://img.shields.io/badge/Shell-ZSH-green)
+![Prompt](https://img.shields.io/badge/Prompt-Starship-yellow)
+![Copilot](https://img.shields.io/badge/AI-GitHub_Copilot-orange)
 
-## Overview
+A carefully crafted collection of configuration files for a modern, productive development environment on macOS.
 
-This repository contains configuration files for:
+## ✨ Featured Tools
 
-- **zsh**: Shell configuration with plugins
-  - zsh-autosuggestions
-  - zsh-syntax-highlighting
-- **starship**: Cross-shell prompt
-- **wezterm**: A GPU-accelerated terminal emulator
-- **GitHub Copilot**: AI pair programming tool
+| Tool | Description | Config Location |
+|------|-------------|----------------|
+| **[Zsh](https://www.zsh.org/)** | Shell with advanced features | `zshrc`, `zsh/` |
+| **[Starship](https://starship.rs/)** | Fast, customizable cross-shell prompt | `starship/starship.toml` |
+| **[Wezterm](https://wezfurlong.org/wezterm/)** | GPU-accelerated terminal | `wezterm/wezterm.lua` |
+| **[GitHub Copilot](https://github.com/features/copilot)** | AI pair programming | `github-copilot/` |
 
-## Installation
-
-Clone this repository into your home directory:
+## 📦 Installation
 
 ```bash
+# Clone the repository
 git clone https://github.com/LoGGGG2402/.config.git ~/.config
-cp zshrc ~/.zshrc
-mkdir ~/.cache/zsh
+
+# Set up zsh configuration
+cp ~/.config/zshrc ~/.zshrc
+mkdir -p ~/.cache/zsh
+
+# Install dependencies
+brew install starship # Modern shell prompt
+brew install --cask wezterm # Terminal emulator
 ```
 
-## Configuration Details
+## ⚡ Key Features
 
-### Zsh
+### ZSH Configuration
 
-The Zsh configuration includes:
-- Main configuration file: `zshrc`
-- Plugins for autosuggestions and syntax highlighting
+- **Enhanced History Management**: Intelligent history with deduplication and immediate sharing between terminals
+- **Smart Auto-completion**: Through zsh-autosuggestions plugin
+- **Syntax Highlighting**: Real-time command syntax highlighting
+- **Intuitive Keybindings**: Customized for efficient navigation and text editing
 
-### Starship
+### Starship Prompt
 
-Terminal prompt customization is handled through `starship/starship.toml`.
+- **Minimalist Design**: Clean, information-dense prompt
+- **Git Integration**: Visual indicators for repository status
+- **Language Support**: Automatic detection of programming environments
+- **Performance**: Lightning-fast prompt rendering
 
-### Wezterm
+### Wezterm Terminal
 
-Terminal emulator configuration in `wezterm/wezterm.lua` with custom background.
+- **GPU Acceleration**: Smooth rendering and scrolling
+- **Custom Background**: Beautiful background with opacity control
+- **Workspace Management**: Advanced tab and workspace organization
+- **Split Panes**: Efficient window management
 
-#### Wezterm Shortcuts Summary (From wezterm.lua)
+## ⌨️ Wezterm Keyboard Shortcuts
 
-Here is a list of the keyboard shortcuts configured in your wezterm.lua file.
+### Core Navigation
+- **Leader Key**: `CMD + a` (3-second timeout)
+- **Copy Mode**: `LEADER + [`
+- **Command Palette**: `LEADER + :`
 
-**Main Keybindings (config.keys)**
-- **Leader Key**: CMD + a (Press this combination first, then the next key within 3 seconds)
-- **Send Ctrl+a**: LEADER + CTRL + a - Sends the Ctrl+a key combination
-- **Copy Mode**: LEADER + [ - Activates Wezterm's copy mode
-- **Command Palette**: LEADER + : - Activates the command palette
-- **Show Workspace Launcher**: LEADER + s - Opens the Workspace launcher (fuzzy search)
-- **Create New Workspace**: LEADER + W - Opens a prompt to enter a new Workspace name
-- **Rename Current Workspace**: LEADER + r - Opens a prompt to rename the current Workspace
-- **Move Cursor Back One Word**: OPT + LeftArrow (Equivalent to Alt + b)
-- **Move Cursor Forward One Word**: OPT + RightArrow (Equivalent to Alt + f)
-- **Rename Current Tab**: CMD + r - Opens a prompt to rename the Tab title
-- **Split Pane Vertically**: LEADER + / - Splits the current pane vertically
-- **Split Pane Horizontally**: LEADER + ; - Splits the current pane horizontally
-- **Rotate Panes**: LEADER + Space - Rotates pane positions clockwise
-- **Toggle Pane Zoom**: LEADER + z - Toggles the zoom state of the current pane
-- **Close Current Pane**: CMD + e - Closes the current pane (with confirmation)
-- **Move Pane to New Tab**: LEADER + m - Moves the current pane to a new tab
-- **Activate Pane Resizing Mode**: OPT + CMD + r - Activates the resize_pane key table
+### Workspace Management
+- **Show Workspace Launcher**: `LEADER + s` (fuzzy search)
+- **Create New Workspace**: `LEADER + W` 
+- **Rename Current Workspace**: `LEADER + r`
 
-**Pane Resizing Key Table (resize_pane)**  
-(Activated by OPT + CMD + r)
-- **Decrease Size Left**: SHIFT + <
-- **Increase Size Down**: SHIFT + _
-- **Increase Size Up**: SHIFT + +
-- **Increase Size Right**: SHIFT + >
-- **Exit Mode**: Escape or Enter or r
+### Tab Management
+- **Rename Current Tab**: `CMD + r`
 
-**Note**: OPT is usually the Alt key on non-Apple keyboards. CMD is the Command key on macOS.
+### Pane Management
+- **Split Vertically**: `LEADER + /`
+- **Split Horizontally**: `LEADER + ;`
+- **Rotate Panes**: `LEADER + Space`
+- **Toggle Pane Zoom**: `LEADER + z`
+- **Close Current Pane**: `CMD + e` (with confirmation)
+- **Move Pane to New Tab**: `LEADER + m`
+- **Resize Pane Mode**: `OPT + CMD + r` (then use SHIFT+<, SHIFT+_, SHIFT++, SHIFT+>)
 
-## Customization
+## 🔧 Customization
 
-Feel free to modify any of these configuration files to suit your preferences. Most configuration files are well-commented to explain their functionality.
+Most configuration files include detailed comments explaining available options:
 
-## License
+- **ZSH**: Edit `zshrc` to modify shell behavior
+- **Starship**: Update `starship/starship.toml` for prompt customization
+- **Wezterm**: Modify `wezterm/wezterm.lua` for terminal settings
+- **Background**: Replace `wezterm/bg.jpg` with your preferred image
+
+## 🔍 Preview
+
+```
+.config on  main [!+] 
+❯                                              
+```
+
+## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+💻 Happy coding! Feel free to fork and customize for your own workflow.
