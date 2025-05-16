@@ -116,17 +116,13 @@ bindkey -e                                        # emacs key bindings
 bindkey ' ' magic-space                           # history expansion on space
 bindkey "^[^[[D" backward-word                    # Option+Left to move cursor back one word
 bindkey "^[^[[C" forward-word                     # Option+Right to move cursor forward one word
-bindkey "^[[1;2D" backward-char                   # Shift+Left to highlight character to the left
-bindkey "^[[1;2C" forward-char                    # Shift+Right to highlight character to the right
+# Additional bindings for WezTerm compatibility
+bindkey "^[b" backward-word                       # Esc+b for backward-word (WezTerm Option+Left)
+bindkey "^[f" forward-word                        # Esc+f for forward-word (WezTerm Option+Right)
+
 bindkey '^U' backward-kill-line                   # ctrl + U
 bindkey '^[[3;5~' kill-word                       # ctrl + Supr
 bindkey '^[[3~' delete-char                       # delete
-bindkey '^[[1;5C' forward-word                    # ctrl + ->
-bindkey '^[[1;5D' backward-word                   # ctrl + <-
-bindkey '^[[5~' beginning-of-buffer-or-history    # page up
-bindkey '^[[6~' end-of-buffer-or-history          # page down
-bindkey '^[[H' beginning-of-line                  # home
-bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
 
 # Create function to toggle between single/double line prompt

@@ -59,6 +59,13 @@ config.keys = {
   -- Send Ctrl+a when Leader+Ctrl+a is pressed (useful for nested tmux/screen)
   { key = "a", mods = "LEADER|CTRL", action = act.SendKey { key = "a", mods = "CTRL" } },
 
+  -- Map Option+Left to send escape sequence for backward-word in zsh
+  { key = "LeftArrow", mods = "OPT", action = act.SendString("\x1b\x62") },  -- Send Esc+b for backward-word
+  
+  -- Map Option+Right to send escape sequence for forward-word in zsh
+  { key = "RightArrow", mods = "OPT", action = act.SendString("\x1b\x66") }, -- Send Esc+f for forward-word
+  
+  
   -- Wezterm features
   { key = "[", mods = "LEADER",      action = act.ActivateCopyMode },
   { key = ":", mods = "LEADER",      action = act.ActivateCommandPalette },
