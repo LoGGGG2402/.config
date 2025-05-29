@@ -119,10 +119,16 @@ bindkey "^[^[[C" forward-word                     # Option+Right to move cursor 
 # Additional bindings for WezTerm compatibility
 bindkey "^[b" backward-word                       # Esc+b for backward-word (WezTerm Option+Left)
 bindkey "^[f" forward-word                        # Esc+f for forward-word (WezTerm Option+Right)
-
+# Removed Shift+Left/Right bindings as they are now handled by WezTerm for text selection
 bindkey '^U' backward-kill-line                   # ctrl + U
 bindkey '^[[3;5~' kill-word                       # ctrl + Supr
 bindkey '^[[3~' delete-char                       # delete
+bindkey '^[[1;5C' forward-word                    # ctrl + ->
+bindkey '^[[1;5D' backward-word                   # ctrl + <-
+bindkey '^[[5~' beginning-of-buffer-or-history    # page up
+bindkey '^[[6~' end-of-buffer-or-history          # page down
+bindkey '^[[H' beginning-of-line                  # home
+bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
 
 # Create function to toggle between single/double line prompt
