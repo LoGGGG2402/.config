@@ -56,6 +56,8 @@ config.leader = { key = "a", mods = "CMD", timeout_milliseconds = 3000 }
 
 -- Main keybindings list
 config.keys = {
+  -- Send CMD+k to clear the terminal
+  { key = "k", mods = "CMD", action = act.ClearScrollback "ScrollbackAndViewport" },
   -- Send Ctrl+a when Leader+Ctrl+a is pressed (useful for nested tmux/screen)
   { key = "a", mods = "LEADER|CTRL", action = act.SendKey { key = "a", mods = "CTRL" } },
 
