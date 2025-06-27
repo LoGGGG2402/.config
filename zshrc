@@ -2,7 +2,7 @@
 # ~/.zshrc
 
 # --- Command History Configuration ---
-HISTFILE=~/.cache/zsh/.zsh_history     
+HISTFILE=~/.cache/.zsh_history     
 HISTSIZE=10000                # Number of commands stored in current session
 SAVEHIST=10000                # Number of commands saved to HISTFILE
 setopt appendhistory          # Append to history, don't overwrite
@@ -59,7 +59,7 @@ PROMPT_EOL_MARK=""
 # --- Enable Zsh Command Completion System ---
 # Necessary for advanced command completion (tab completion)
 autoload -Uz compinit
-compinit -d "$HOME/.cache/zsh/.zcompdump"
+compinit -d "$HOME/.cache/.zcompdump"
 
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' auto-description 'specify: %d'
