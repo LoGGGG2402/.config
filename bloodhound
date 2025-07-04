@@ -1,0 +1,46 @@
+#!/bin/bash
+
+BLOODHOUND_DIR="/opt/bloodhound"
+
+if [ ! -d "$BLOODHOUND_DIR" ]; then
+    echo "Error: BloodHound directory not found at '$BLOODHOUND_DIR'. Please update the path in the script."
+    exit 1
+fi
+
+cd "$BLOODHOUND_DIR" || { echo "Error: Could not change to directory '$BLOODHOUND_DIR'."; exit 1; }
+
+COMMAND=$1
+
+case "$COMMAND" in
+    start)
+        echo "Starting BloodHound services..."
+        podman-compose up -d
+
+        if [ $? -eq 0 ]; then
+            echo "BloodHound services started successfully."
+        else
+            echo "An error occurred while starting BloodHound services."
+        fi
+        ;;
+    stop)
+        echo "Stopping BloodHound services..."
+        podman-compose down
+
+        if [ $? -eq 0 ]; then
+            echo "BloodHound services stopped successfully."
+        else
+            echo "An error occurred while stopping BloodHound services."
+        fi
+        ;;
+    status)
+        echo "Checking BloodHound services status..."
+        podman-compose ps
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|status}"
+        echo "  start  - Starts BloodHound services"
+        echo "  stop   - Stops BloodHound services"
+        echo "  status - Displays the status of BloodHound services"
+        exit 1
+        ;;
+esac
