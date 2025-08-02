@@ -78,6 +78,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 ZSH_SYNTAX_HIGHLIGHTING_DIR="$HOME/.config/zsh/zsh-syntax-highlighting"
 ZSH_AUTOSUGGESTIONS_DIR="$HOME/.config/zsh/zsh-autosuggestions"
 PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+PATH="$PATH:/Users/phanlong/.config/starship"
 
 # --- Enable Plugins ---
 source "$ZSH_SYNTAX_HIGHLIGHTING_DIR/zsh-syntax-highlighting.zsh"
@@ -168,6 +169,6 @@ precmd() {
     fi
 }
 
-export STARTSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export PATH
-eval "$(starship init zsh)"
+eval "$($HOME/.config/starship/starship init zsh)"

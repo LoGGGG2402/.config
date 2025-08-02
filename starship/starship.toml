@@ -1,4 +1,6 @@
 format = """
+$username\
+$hostname\
 $directory\
 $git_branch\
 $git_status\
@@ -101,6 +103,19 @@ format = '[$symbol]($style)'
 min_time = 500
 style = 'fg:gray'
 format = '[$duration]($style)'
+
+[username]
+style_user = 'fg:blue bold'
+style_root = 'fg:red bold'
+format = '[󰀄 $user]($style)'
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+style = 'fg:green bold'
+format = '[@$hostname]($style) '
+disabled = false
 
 [palettes.nord]
 dark_blue = '#5E81AC'
