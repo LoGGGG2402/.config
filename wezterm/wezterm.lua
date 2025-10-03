@@ -18,7 +18,7 @@ end
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
-  { family = "JetbrainsMono Nerd Font", scale = 1.0 },
+  { family = "FiraCode Nerd Font", scale = 1.0 },
   -- Fallback fonts will be used if characters are missing
 })
 
@@ -27,13 +27,13 @@ config.initial_rows = 40  -- Example: 40 rows
 config.initial_cols = 150 -- Example: 120 columns
 -- Window background
 config.window_background_image = wezterm.config_dir .. "/bg.jpg" -- Relative path to background image
-config.window_background_opacity = 0.7 -- Background opacity (0.0 transparent, 1.0 opaque)
+config.window_background_opacity = 0.99 -- Background opacity (0.0 transparent, 1.0 opaque)
 config.window_background_image_hsb = { -- Adjust background image HSB
   brightness = 0.1,
   hue = 1.0,
   saturation = 0.4,
 }
-config.macos_window_background_blur = 10 -- Background blur effect (macOS only)
+-- config.macos_window_background_blur = 10 -- Background blur effect (macOS only)
 
 -- Window decorations and behavior
 config.window_decorations = "RESIZE" -- Minimal decorations, removes system title bar
