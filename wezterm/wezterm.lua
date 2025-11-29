@@ -13,9 +13,14 @@ if wezterm.config_builder then
 end
 
 -- ====================================
+-- Shell Configuration
+-- ====================================
+config.default_prog = { "/Applications/fish-4.2.1.app/Contents/Resources/base/usr/local/bin/fish", "-l" }
+
+-- ====================================
 -- Appearance and Basic Behavior Settings
 -- ====================================
-
+config.default_cursor_style = "BlinkingBar"
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
   { family = "JetbrainsMono Nerd Font", scale = 1.0 },
