@@ -15,7 +15,7 @@ end
 -- ====================================
 -- Shell Configuration
 -- ====================================
-config.default_prog = { "/Applications/fish-4.2.1.app/Contents/Resources/base/usr/local/bin/fish", "-l" }
+-- config.default_prog = { "/Applications/fish-4.2.1.app/Contents/Resources/base/usr/local/bin/fish", "-l" }
 
 -- ====================================
 -- Appearance and Basic Behavior Settings
